@@ -13,7 +13,6 @@
 rm pre_reboot_check_log_$(date +\%m.\%d.\%Y_backup).txt
 
 
-
 # Create log file variable
 log=pre_reboot_check_log_$(date +\%m.\%d.\%Y_backup).txt
 
