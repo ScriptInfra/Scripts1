@@ -2,9 +2,9 @@
 
 ########################################################################################################################################################################
 
-#Script Name: pre_reboot_check.sh
+#Script Name: services_filesystem_status.sh
 
-#Description: This script is to be run prior to a reboot in order to gather the following stats: mounted filesystems, running services
+#Description: This script can be run prior to a reboot in order to gather the following stats: mounted filesystems, running services
 
 ########################################################################################################################################################################
 
