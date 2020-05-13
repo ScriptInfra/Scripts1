@@ -4,7 +4,7 @@
 
 #Script Name: health_check.sh
 
-#Description: This script queries if the following services are running: Syncthing, Folding@Home, Killing Floor 2 server
+#Description: This script queries if the following services are running: Syncthing, Folding@Home, Killing Floor 2 server, Firewall
 
 ########################################################################################################################################################################
 
@@ -23,10 +23,6 @@ touch /var/log/health_check_logs/health_check_log_$(date +\%m.\%d.\%Y).txt
 log=/var/log/health_check_logs/health_check_log_$(date +\%m.\%d.\%Y).txt
 
 
-#sleep for consumption
-sleep 2
-
-
 #Prompt that health check script is running
 echo | tee -a "$log"
 echo "####################################" | tee -a "$log"
@@ -36,14 +32,9 @@ echo | tee -a "$log"
 echo "####################################" | tee -a "$log"
 
 
-#sleep for consumption
-sleep 2
-
-
 #Prompt user that script is checking Syncthing service status
 echo | tee -a "$log"
 echo "Checking Syncthing service status..." | tee -a "$log"
-sleep 2
 
 
 #Check if Syncthing service is running
@@ -62,7 +53,6 @@ else
         echo "WARNING: Syncthing is not in a running state" | tee -a "$log"
         echo | tee -a "$log"
         cat "$log" | mailx -s "WARNING: Syncthing is not in a running state" andrewbatchelor5@gmail.com
-        sleep 2
         echo "Sending Syncthing status alert to AndrewBatchelor5@Gmail.com..." | tee -a "$log"
         echo | tee -a "$log"
 fi
@@ -73,7 +63,6 @@ echo | tee -a "$log"
 echo "------------------------------------------------------------" | tee -a "$log"
 echo | tee -a "$log"
 echo "Checking Folding@Home service status..." | tee -a "$log"
-sleep 2
 
 
 #Check if Folding@Home service is running
@@ -92,15 +81,10 @@ else
         echo "WARNING: Folding@Home is not in a running state" | tee -a "$log"
 	echo | tee -a "$log"
 	cat "$log" | mailx -s "WARNING: Folding@Home is not in a running state" andrewbatchelor5@gmail.com
-	sleep 2
 	echo "Sending Folding@Home status alert to AndrewBatchelor5@Gmail.com..." | tee -a "$log"
 	echo | tee -a "$log"
 fi
 
-
-
-#sleep for consumption
-sleep 2
 
 #Start Killing Floor logic
 echo | tee -a "$log"
@@ -108,10 +92,6 @@ echo "------------------------------------------------------------" | tee -a "$l
 echo | tee -a "$log"
 echo "Checking Killing Floor game server status..." | tee -a "$log"
 echo | tee -a "$log"
-
-
-#sleep for consumption
-sleep 2
 
 
 kf_status=$(ps -ef | grep -i kf | wc -l)
@@ -125,5 +105,32 @@ else
         echo | tee -a "$log"
         cat "$log" | mailx -s "WARNING: Killing Floor 2 game server is not in a running state" andrewbatchelor5@gmail.com
         echo "Sending Killing Floor 2 game server status alert to AndrewBatchelor5@Gmail.com..." | tee -a "$log"
+        echo | tee -a "$log"
+fi
+
+
+echo | tee -a "$log"
+echo "------------------------------------------------------------" | tee -a "$log"
+echo | tee -a "$log"
+echo "Checking Firewall service status..." | tee -a "$log"
+
+
+#Check if Firewall service is running
+firewall_status=$(systemctl status firewalld | grep Active)
+firewall_status_logic=$(systemctl status firewalld | grep running | wc -l)
+
+echo | tee -a "$log"
+echo "Firewall status:" $firewall_status | tee -a "$log"
+echo | tee -a "$log"
+
+if [ "$firewall_status_logic" == "1" ]; then
+        echo "SUCCESS: Firewall is running" | tee -a "$log"
+        continue
+        echo | tee -a "$log"
+else
+        echo "WARNING: Firewall is not in a running state" | tee -a "$log"
+        echo | tee -a "$log"
+        cat "$log" | mailx -s "WARNING: Firewall is not in a running state" andrewbatchelor5@gmail.com
+        echo "Sending Firewall status alert to AndrewBatchelor5@Gmail.com..." | tee -a "$log"
         echo | tee -a "$log"
 fi
