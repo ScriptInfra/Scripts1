@@ -23,6 +23,10 @@ touch /var/log/health_check_logs/health_check_log_$(date +\%m.\%d.\%Y).txt
 log=/var/log/health_check_logs/health_check_log_$(date +\%m.\%d.\%Y).txt
 
 
+#Clear screen for consumption
+clear
+
+
 #Prompt that health check script is running
 echo | tee -a "$log"
 echo "####################################" | tee -a "$log"
@@ -127,10 +131,12 @@ if [ "$firewall_status_logic" == "1" ]; then
         echo "SUCCESS: Firewall is running" | tee -a "$log"
         continue
         echo | tee -a "$log"
+	echo | tee -a "$log"
 else
         echo "WARNING: Firewall is not in a running state" | tee -a "$log"
         echo | tee -a "$log"
         cat "$log" | mailx -s "WARNING: Firewall is not in a running state" andrewbatchelor5@gmail.com
         echo "Sending Firewall status alert to AndrewBatchelor5@Gmail.com..." | tee -a "$log"
         echo | tee -a "$log"
+	echo | tee -a "$log"
 fi
