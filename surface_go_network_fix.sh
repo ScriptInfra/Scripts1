@@ -12,6 +12,5 @@
 ######################################################## 
 
 #Revert from backup
-sudo su -
-mv /usr/lib/firmware/ath10k/QCA6174/hw2.1/board.bin_working_backup /usr/lib/firmware/ath10k/QCA6174/hw2.1/board.bin 
-mv /usr/lib/firmware/ath10k/QCA6174/hw3.0/board.bin_working_backup /usr/lib/firmware/ath10k/QCA6174/hw3.0/board.bin
+sudo mv /usr/lib/firmware/ath10k/QCA6174/hw2.1/board.bin_working_backup /usr/lib/firmware/ath10k/QCA6174/hw2.1/board.bin 
+sudo mv /usr/lib/firmware/ath10k/QCA6174/hw3.0/board.bin_working_backup /usr/lib/firmware/ath10k/QCA6174/hw3.0/board.bin
