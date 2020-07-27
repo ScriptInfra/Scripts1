@@ -4,12 +4,13 @@
 ######################################################## 
 
 
-#Script Name: start_kf_server.sh 
+#Script Name: surface_go_network_fix.sh
 
-#Description: This script can be leveraged to cleanly start the Killing Floor 2 Server
+#Description: This script can be leveraged to revert to the functional wireless firmware
 
  
 ######################################################## 
 
 
-
+mv /usr/lib/firmware/ath10k/QCA6174/hw2.1/board.bin_working_backup /usr/lib/firmware/ath10k/QCA6174/hw2.1/board.bin 
+mv /usr/lib/firmware/ath10k/QCA6174/hw3.0/board.bin_working_backup /usr/lib/firmware/ath10k/QCA6174/hw3.0/board.bin
