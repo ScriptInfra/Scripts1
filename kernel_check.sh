@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/sh
 
 ########################################################################################################################################################################
 
@@ -18,7 +18,9 @@ current_kernel_version=$(uname -r | cut -c 1-15 | tr -d - | tr -d .)
 
 # Check if server is running on the latest kernel available
 if [ "$latest_kernel_version" -gt "$current_kernel_version" ]; then
-	echo "System is not on the latest kernel version. Please reboot the server to pick up the latest kernel." > "$log"
-	cat "$log" | mailx -s "RHELInfra Kernel Check" andrewbatchelor5@gmail.com
+		echo "System is not running on the latest kernel version. Please reboot the server to pick up the latest kernel." > "$log"
+		cat "$log" | mailx -s "RHELInfra Kernel Check" andrewbatchelor5@gmail.com
+	else
+		echo "System is running on the latest kernel version."
 	exit
 fi
