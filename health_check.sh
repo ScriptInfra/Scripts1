@@ -89,6 +89,12 @@ else
 	echo | tee -a "$log"
 fi
 
+#Start Folding@Home Service if it is not in a running state
+if [ "$fah_status_logic" != "1" ]; then
+	/etc/rc.d/init.d/FAHClient start
+	echo "Folding@Home service has been started."
+fi
+
 
 #Start Killing Floor logic
 echo | tee -a "$log"
