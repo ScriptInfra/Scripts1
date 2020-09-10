@@ -15,4 +15,4 @@ log=/var/log/apt_upgrade_$(date +\%m.\%d.\%Y).txt
 apt upgrade -y > $log
 
 #Send system upgrade log to email
-cat "$log" | mailx -s "Ubuntu System Update Status" andrewbatchelor5@gmail.com
+cat "$log" | mailx -s "Ubuntu System Update Status for $(date +\%m.\%d.\%Y)" andrewbatchelor5@gmail.com
