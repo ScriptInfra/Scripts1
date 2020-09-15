@@ -160,3 +160,28 @@ else
         echo | tee -a "$log"
 	echo | tee -a "$log"
 fi
+
+
+
+#Prompt user that script is checking cpu temp
+echo "------------------------------------------------------------" | tee -a "$log"
+echo | tee -a "$log"
+echo "Checking CPU temp..." | tee -a "$log"
+echo | tee -a "$log"
+
+
+#Check CPU temp
+cpu_temp=$(sensors | grep Package | awk '{print $4}' | cut -c 2-3)
+
+if [ $cpu_temp -lt 85 ]; then
+	echo "SUCCESS: CPU temp within operating threshold" | tee -a $"log"
+	echo | tee -a "$log"
+        echo | tee -a "$log"
+else
+	echo "WARNING: CPU Temp over 85 degrees" | tee -a "$log"
+	echo | tee -a "$log"
+        cat "$log" | mailx -s "WARNING: CPU temp is above 85 degrees" andrewbatchelor5@gmail.com
+        echo "Sending CPU temp alert to AndrewBatchelor5@Gmail.com..." | tee -a "$log"
+        echo | tee -a "$log"
+	echo | tee -a "$log"
+fi
