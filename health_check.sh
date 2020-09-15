@@ -4,7 +4,7 @@
 
 #Script Name: health_check.sh
 
-#Description: This script queries if the following services are running: Syncthing, Folding@Home, Killing Floor 2 server, Firewall
+#Description: This script queries if the following services are running: Syncthing, Folding@Home, KF2 server, Firewall
 
 ########################################################################################################################################################################
 
@@ -96,25 +96,39 @@ if [ "$fah_status_logic" != "1" ]; then
 fi
 
 
-#Start Killing Floor logic
+#Start KF2 logic
 echo | tee -a "$log"
 echo "------------------------------------------------------------" | tee -a "$log"
 echo | tee -a "$log"
-echo "Checking Killing Floor game server status..." | tee -a "$log"
+echo "Checking KF2 server process and web status..." | tee -a "$log"
 echo | tee -a "$log"
 
 
-kf_status=$(ps -ef | grep -i kf | wc -l)
+kf_process_status=$(ps -ef | grep -i kf | wc -l)
 
-if [ "$kf_status" == 3 ]; then
-        echo "SUCCESS: Killing Floor 2 game server is running" | tee -a "$log"
+if [ "$kf_process_status" == 3 ]; then
+        echo "SUCCESS: KF2 process is in a running state" | tee -a "$log"
 	continue
         echo | tee -a "$log"
 else
-        echo "WARNING: Killing Floor 2 game server is not in a running state" | tee -a "$log"
+        echo "WARNING: KF2 process in not in a running state" | tee -a "$log"
         echo | tee -a "$log"
-        cat "$log" | mailx -s "WARNING: Killing Floor 2 game server is not in a running state" andrewbatchelor5@gmail.com
-        echo "Sending Killing Floor 2 game server status alert to AndrewBatchelor5@Gmail.com..." | tee -a "$log"
+        cat "$log" | mailx -s "WARNING: KF2 process is not in a running state" andrewbatchelor5@gmail.com
+        echo "Sending KF2 process status alert to AndrewBatchelor5@Gmail.com..." | tee -a "$log"
+        echo | tee -a "$log"
+fi
+
+kf_web_status=$(curl -Is http://192.168.1.3:8080/ServerAdmin/current/info | grep -i "Content-Type: text/html" | awk '{print $1}')
+
+if [ "$kf_web_status" == Content-Type: ]; then
+	echo "SUCCESS: KF2 web test successfull" | tee -a "$log"
+	continue
+	echo | tee -a "$log"
+else
+	echo "WARNING: KF2 web test failed" | tee -a "$log"
+	cat "$log" | mailx -s "WARNING: KF2 web test failed" andrewbatchelor5@gmail.com
+	echo | tee -a "$log"
+        echo "Sending KF2 web status alert to AndrewBatchelor5@Gmail.com..." | tee -a "$log"
         echo | tee -a "$log"
 fi
 
