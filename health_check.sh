@@ -174,7 +174,7 @@ echo | tee -a "$log"
 cpu_temp=$(sensors | grep Package | awk '{print $4}' | cut -c 2-3)
 
 if [ $cpu_temp -lt 85 ]; then
-	echo "SUCCESS: CPU temp within operating threshold" | tee -a $"log"
+	echo "SUCCESS: CPU temp within operating threshold" | tee -a "$log"
 	echo | tee -a "$log"
         echo | tee -a "$log"
 else
