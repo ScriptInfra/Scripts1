@@ -15,4 +15,4 @@ log=/var/log/yum_update_$(date +\%m.\%d.\%Y).txt
 yum upgrade -y > $log
 
 #Send system update log to email
-cat "$log" | mailx -s "RHEL System Update Status for $(date +\%m.\%d.\%Y)" andrewbatchelor5@gmail.com
+cat "$log" | mailx -s "cloud1 System Update Status for $(date +\%m.\%d.\%Y)" andrewbatchelor5@gmail.com
