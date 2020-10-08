@@ -25,11 +25,24 @@ log=/var/log/shutdown_logs/shutdown_log_$(date +\%m.\%d.\%Y).txt
 
 #confirm user really wants to shutdown system
 hostname=$(hostname)
+echo
 while true; do
     read -p "Are you sure you want to shutdown $hostname? " yn
     case $yn in
         [Yy]* ) break;;
-        [Nn]* ) echo "This script will now exit"; exit;;
+        [Nn]* ) echo; echo "This script will now exit."; echo; exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+
+#Confirm user has gracefully stopped the KF2 server
+echo
+while true; do
+    read -p "Have you gracefully stopped the KF2 server? (y/n): " yn
+    case $yn in
+        [Yy]* ) break;;
+        [Nn]* ) echo; echo "This script will now exit."; echo; exit;;
         * ) echo "Please answer yes or no.";;
     esac
 done
