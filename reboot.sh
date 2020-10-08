@@ -5,7 +5,8 @@
 
 #Script Name: reboot.sh 
 
-#Description: This script will stop the Folding@Home service, and check if there are users on the KF2 server. If there are no users, the server will reboot
+#Description: This script will stop the Folding@Home service, and check if there are users on the KF2 server.
+#KF2 aut-reboot logic has been removed. The concern is that Tripwire may update the server logic, and the script string will no longer correctly query user count
 
 ########################################################################################################################################################################
 
@@ -18,10 +19,35 @@ if [ `whoami` != 'root' ]
 fi
 
 
+#Confirm user wants to reboot system
+hostname=$(hostname)
+echo
+while true; do
+    read -p "Are you sure you want to reboot $hostname? (y/n): " yn
+    case $yn in
+        [Yy]* ) break;;
+        [Nn]* ) echo; echo "This script will now exit."; echo; exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+
+#Confirm user has gracefully stopped the KF2 server
+echo
+while true; do
+    read -p "Have you gracefully stopped the KF2 server? (y/n): " yn
+    case $yn in
+        [Yy]* ) break;;
+        [Nn]* ) echo; echo "This script will now exit."; echo; exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+
 #define and cleanup reboot log
-rm /var/log/reboot_log/reboot_log_$(date +\%m.\%d.\%Y).txt
-touch /var/log/reboot_log/reboot_log_$(date +\%m.\%d.\%Y).txt
-log=/var/log/reboot_log/reboot_log_$(date +\%m.\%d.\%Y).txt
+#rm /var/log/reboot_logs/reboot_log_$(date +\%m.\%d.\%Y).txt
+touch /var/log/reboot_logs/reboot_log_$(date +\%m.\%d.\%Y).txt
+log=/var/log/reboot_logs/reboot_log_$(date +\%m.\%d.\%Y).txt
 
 
 #sleep for consumption
@@ -73,29 +99,25 @@ sleep 2
 
 
 #Start KF2 logic
-echo | tee -a "$log"
-echo "------------------------------------------------------------" | tee -a "$log"
-echo | tee -a "$log"
-echo "Checking if there are possible active users on KF2 game server..." | tee -a "$log"
-echo | tee -a "$log"
-
-
-#sleep for consumption
-sleep 2
+#echo | tee -a "$log"
+#echo "------------------------------------------------------------" | tee -a "$log"
+#echo | tee -a "$log"
+#echo "Checking if there are possible active users on KF2 game server..." | tee -a "$log"
+#echo | tee -a "$log"
 
 
 #Check if there are any users on the KF2 server
-kf_check=$(tail -3000 /home/steam/Steam/Killing_Floor_2/KFGame/Logs/Launch.log | grep "GetLivingPlayerCount" | wc -l)
-
-if [ "$kf_check" -eq 0 ]; then
-	echo "SUCCESS: No active users found" | tee -a "$log"
-        continue
-else
-        echo "ACTION REQUIRED: Possible users were identified. Manually check to confirm there are no active users on the KF2 server. This script will now exit" | tee -a "$log"
-	echo | tee -a "$log"
-	cat | tee -a "$log"
-        exit
-fi
+#kf_check=$(tail -3000 /home/steam/Steam/Killing_Floor_2/KFGame/Logs/Launch.log | grep "GetLivingPlayerCount" | wc -l)
+#
+#if [ "$kf_check" -eq 0 ]; then
+#	echo "SUCCESS: No active users found" | tee -a "$log"
+#        continue
+#else
+#        echo "ACTION REQUIRED: Possible users were identified. Manually check to confirm there are no active users on the KF2 server. This script will now exit" | tee -a "$log"
+#	echo | tee -a "$log"
+#	cat | tee -a "$log"
+#        exit
+#fi
 
 
 #sleep for consumption
