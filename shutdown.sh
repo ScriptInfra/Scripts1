@@ -88,30 +88,26 @@ fi
 sleep 2
 
 
-Start KF2 logic
-echo | tee -a "$log"
-echo "------------------------------------------------------------" | tee -a "$log"
-echo | tee -a "$log"
-echo "Checking if there are possible active users on KF2 game server..." | tee -a "$log"
-echo | tee -a "$log"
-
-
-#sleep for consumption
-sleep 2
+#Start KF2 logic
+#echo | tee -a "$log"
+#echo "------------------------------------------------------------" | tee -a "$log"
+#echo | tee -a "$log"
+#echo "Checking if there are possible active users on KF2 game server..." | tee -a "$log"
+#echo | tee -a "$log"
 
 
 #Check if there are any users on the KF2 server
-kf_check=$(tail -3000 /home/steam/Steam/Killing_Floor_2/KFGame/Logs/Launch.log | grep "GetLivingPlayerCount" | wc -l)
+#kf_check=$(tail -3000 /home/steam/Steam/Killing_Floor_2/KFGame/Logs/Launch.log | grep "GetLivingPlayerCount" | wc -l)
 
-if [ "$kf_check" -eq 0 ]; then
-        echo "SUCCESS: No active users found" | tee -a "$log"
-        continue
-else
-        echo "ACTION REQUIRED: Possible users were identified. Manually check to confirm there are no active users on the KF2 server. This script will now exit" | tee -a "$log"
-        echo | tee -a "$log"
-        cat | tee -a "$log"
-        exit
-fi
+#if [ "$kf_check" -eq 0 ]; then
+#        echo "SUCCESS: No active users found" | tee -a "$log"
+#        continue
+#else
+#        echo "ACTION REQUIRED: Possible users were identified. Manually check to confirm there are no active users on the KF2 server. This script will now exit" | tee -a "$log"
+#        echo | tee -a "$log"
+#        cat | tee -a "$log"
+#        exit
+#fi
 
 
 #sleep for consumption
