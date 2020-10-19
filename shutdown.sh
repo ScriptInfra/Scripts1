@@ -132,4 +132,4 @@ echo "The system will now shutdown" | tee -a "$log"
 
 #cat "$log" | mailx -s "cloud1 Reboot Log" andrewbatchelor5@gmail.com
 
-#shutdown now
+shutdown now
