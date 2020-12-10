@@ -70,7 +70,7 @@ echo "Checking Folding@Home service status..." | tee -a "$log"
 
 
 #Check if Folding@Home service is running
-#fah_status=$(systemctl status FAHClient.service)
+fah_status=$(systemctl status FAHClient.service | grep -i running)
 fah_status_logic=$(systemctl status FAHClient.service | grep -i 'running' | wc -l)
 
 echo | tee -a "$log"
