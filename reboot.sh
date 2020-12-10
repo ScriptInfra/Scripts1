@@ -142,4 +142,4 @@ echo "The system will now reboot" | tee -a "$log"
 
 #cat "$log" | mailx -s "RHELInfra Reboot Log" andrewbatchelor5@gmail.com
 
-#reboot
+reboot
