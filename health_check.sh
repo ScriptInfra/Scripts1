@@ -42,8 +42,8 @@ echo "Checking Syncthing service status..." | tee -a "$log"
 
 
 #Check if Syncthing service is running
-syncthing_status=$(systemctl status syncthing@syncthing.service | grep Active)
-syncthing_status_logic=$(systemctl status syncthing@syncthing.service | grep running | wc -l)
+syncthing_status=$(systemctl status syncthing@syncthing | grep Active)
+syncthing_status_logic=$(systemctl status syncthing@syncthing | grep running | wc -l)
 
 echo | tee -a "$log"
 echo "Syncthing status:" $syncthing_status | tee -a "$log"
@@ -70,8 +70,8 @@ echo "Checking Folding@Home service status..." | tee -a "$log"
 
 
 #Check if Folding@Home service is running
-fah_status=$(systemctl status FAHClient.service | grep -i running)
-fah_status_logic=$(systemctl status FAHClient.service | grep -i 'running' | wc -l)
+fah_status=$(systemctl status fahclient | grep -i running)
+fah_status_logic=$(systemctl status fahclient | grep -i 'running' | wc -l)
 
 echo | tee -a "$log"
 echo "Folding@Home Status:" $fah_status | tee -a "$log"
@@ -91,7 +91,7 @@ fi
 
 #Start Folding@Home Service if it is not in a running state
 if [ "$fah_status_logic" != "1" ]; then
-	/etc/rc.d/init.d/FAHClient start
+	systemctl start fahclient
 	echo "Folding@Home service has been started."
 fi
 
