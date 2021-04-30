@@ -72,7 +72,7 @@ echo | tee -a "$log"
 echo | tee -a "$log"
 echo "Attempting to stop Folding@Home client..." | tee -a "$log"
 echo | tee -a "$log"
-/etc/rc.d/init.d/FAHClient stop
+systemctl stop fahclient
 
 
 #Add wait to allow FAHClient to stop
