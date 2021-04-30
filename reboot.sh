@@ -80,7 +80,7 @@ sleep 3
 
 
 #Confirm Folding@Home service is stopped
-fah_status=$(/etc/rc.d/init.d/FAHClient status)
+fah_status=$(systemctl status fahclient)
 
 echo "Folding@Home Status:" $fah_status | tee -a "$log"
 echo | tee -a "$log"
