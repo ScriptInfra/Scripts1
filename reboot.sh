@@ -80,18 +80,18 @@ sleep 3
 
 
 #Confirm Folding@Home service is stopped
-fah_status=$(systemctl status fahclient)
-
-echo "Folding@Home Status:" $fah_status | tee -a "$log"
-echo | tee -a "$log"
-
-if [ "$fah_status" == "fahclient is not running" ]; then
-	echo "SUCCESS: fahclient stopped gracefully" | tee -a "$log"
-	continue
-else
-	echo "fahclient did not stop gracefully, this script will now exit" | tee -a "$log"
-	exit
-fi
+#fah_status=$(systemctl status fahclient)
+#
+#echo "Folding@Home Status:" $fah_status | tee -a "$log"
+#echo | tee -a "$log"
+#
+#if [ "$fah_status" == "fahclient is not running" ]; then
+#	echo "SUCCESS: fahclient stopped gracefully" | tee -a "$log"
+#	continue
+#else
+#	echo "fahclient did not stop gracefully, this script will now exit" | tee -a "$log"
+#	exit
+#fi
 
 
 #sleep for consumption
