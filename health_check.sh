@@ -8,6 +8,7 @@
 
 ########################################################################################################################################################################
 
+email=$(cat /git/Scripts/email.txt)
 
 #Confirm user is running as root
 if [ `whoami` != 'root' ]
@@ -56,8 +57,8 @@ if [ "$syncthing_status_logic" == "1" ]; then
 else
         echo "WARNING: Syncthing is not in a running state" | tee -a "$log"
         echo | tee -a "$log"
-        cat "$log" | mailx -s "WARNING: Syncthing is not in a running state" andrewbatchelor5@gmail.com
-        echo "Sending Syncthing status alert to AndrewBatchelor5@Gmail.com..." | tee -a "$log"
+        cat "$log" | mailx -s "WARNING: Syncthing is not in a running state" "$email"
+        echo "Sending Syncthing status alert to "$email"..." | tee -a "$log"
         echo | tee -a "$log"
 fi
 
@@ -84,8 +85,8 @@ if [ "$fah_status_logic" == "1" ]; then
 else
         echo "WARNING: Folding@Home is not in a running state" | tee -a "$log"
 	echo | tee -a "$log"
-	cat "$log" | mailx -s "WARNING: Folding@Home is not in a running state" andrewbatchelor5@gmail.com
-	echo "Sending Folding@Home status alert to AndrewBatchelor5@Gmail.com..." | tee -a "$log"
+	cat "$log" | mailx -s "WARNING: Folding@Home is not in a running state" "$email"
+	echo "Sending Folding@Home status alert to "$email"..." | tee -a "$log"
 	echo | tee -a "$log"
 fi
 
@@ -113,8 +114,8 @@ fi
 #else
 #        echo "WARNING: KF2 process in not in a running state" | tee -a "$log"
 #        echo | tee -a "$log"
-#        cat "$log" | mailx -s "WARNING: KF2 process is not in a running state" andrewbatchelor5@gmail.com
-#        echo "Sending KF2 process status alert to AndrewBatchelor5@Gmail.com..." | tee -a "$log"
+#        cat "$log" | mailx -s "WARNING: KF2 process is not in a running state" "$email"
+#        echo "Sending KF2 process status alert to "$email"..." | tee -a "$log"
 #        echo | tee -a "$log"
 #fi
 
@@ -126,9 +127,9 @@ fi
 #	echo | tee -a "$log"
 #else
 #	echo "WARNING: KF2 web test failed" | tee -a "$log"
-#	cat "$log" | mailx -s "WARNING: KF2 web test failed" andrewbatchelor5@gmail.com
+#	cat "$log" | mailx -s "WARNING: KF2 web test failed" "$email"
 #	echo | tee -a "$log"
-#        echo "Sending KF2 web status alert to AndrewBatchelor5@Gmail.com..." | tee -a "$log"
+#        echo "Sending KF2 web status alert to "$email"..." | tee -a "$log"
 #        echo | tee -a "$log"
 #fi
 
@@ -155,8 +156,8 @@ if [ "$firewall_status_logic" == "1" ]; then
 else
         echo "WARNING: Firewall is not in a running state" | tee -a "$log"
         echo | tee -a "$log"
-        cat "$log" | mailx -s "WARNING: Firewall is not in a running state" andrewbatchelor5@gmail.com
-        echo "Sending Firewall status alert to AndrewBatchelor5@Gmail.com..." | tee -a "$log"
+        cat "$log" | mailx -s "WARNING: Firewall is not in a running state" "$email"
+        echo "Sending Firewall status alert to $"email"..." | tee -a "$log"
         echo | tee -a "$log"
 	echo | tee -a "$log"
 fi
@@ -180,8 +181,8 @@ if [ $cpu_temp -lt 80 ]; then
 else
 	echo "WARNING: CPU Temp over 80 degrees" | tee -a "$log"
 	echo | tee -a "$log"
-        cat "$log" | mailx -s "WARNING: CPU temp is above 85 degrees" andrewbatchelor5@gmail.com
-        echo "Sending CPU temp alert to AndrewBatchelor5@Gmail.com..." | tee -a "$log"
+        cat "$log" | mailx -s "WARNING: CPU temp is above 85 degrees" "$email"
+        echo "Sending CPU temp alert to "$email"..." | tee -a "$log"
         echo | tee -a "$log"
 	echo | tee -a "$log"
 fi
