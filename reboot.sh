@@ -59,7 +59,7 @@ sleep 2
 echo | tee -a "$log"
 echo "##############################" | tee -a "$log"
 echo | tee -a "$log"
-echo "### Starting system reboot ###" | tee -a "$log"
+echo "### Starting System Reboot ###" | tee -a "$log"
 echo | tee -a "$log"
 echo "##############################" | tee -a "$log"
 
@@ -126,11 +126,12 @@ sleep 2
 
 
 #Email user log file
-echo | tee -a "$log"
-echo "------------------------------------------------------------" | tee -a "$log"
-echo | tee -a "$log"
-echo "Sending log file to "$email"..." | tee -a "$log"
-echo | tee -a "$log"
+#echo | tee -a "$log"
+#echo "------------------------------------------------------------" | tee -a "$log"
+#echo | tee -a "$log"
+#echo "Sending log file to "$email"..." | tee -a "$log"
+#echo | tee -a "$log"
+#cat "$log" | mailx -s "Cloud1 Reboot Log" "$email"
 
 
 #sleep for consumption
@@ -141,6 +142,5 @@ sleep 3
 echo | tee -a "$log"
 echo "The system will now reboot" | tee -a "$log"
 
-#cat "$log" | mailx -s "RHELInfra Reboot Log" "$email"
 
 #reboot
