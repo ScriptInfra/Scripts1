@@ -10,6 +10,9 @@
 ########################################################################################################################################################################
 
 
+email=$(cat /git/Scripts/email.txt)
+
+
 #Confirm user is running as root
 if [ `whoami` != 'root' ]
 	then
@@ -126,7 +129,7 @@ sleep 2
 echo | tee -a "$log"
 echo "------------------------------------------------------------" | tee -a "$log"
 echo | tee -a "$log"
-echo "Sending log file to AndrewBatchelor5@Gmail.com..." | tee -a "$log"
+echo "Sending log file to "$email"..." | tee -a "$log"
 echo | tee -a "$log"
 
 
@@ -138,6 +141,6 @@ sleep 3
 echo | tee -a "$log"
 echo "The system will now reboot" | tee -a "$log"
 
-#cat "$log" | mailx -s "RHELInfra Reboot Log" andrewbatchelor5@gmail.com
+#cat "$log" | mailx -s "RHELInfra Reboot Log" "$email"
 
-reboot
+#reboot
