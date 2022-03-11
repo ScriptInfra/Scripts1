@@ -6,7 +6,6 @@
 #Script Name: reboot.sh 
 
 #Description: This script will stop the Folding@Home service, and check if there are users on the KF2 server.
-#KF2 aut-reboot logic has been removed. The concern is that Tripwire may update the server logic, and the script string will no longer correctly query user count
 
 ########################################################################################################################################################################
 
@@ -35,7 +34,7 @@ done
 #Confirm user has gracefully stopped the KF2 server
 echo
 while true; do
-    read -p "Have you gracefully stopped the KF2 server? (y/n): " yn
+    read -p "Has the KF2 server been gracefully stopped? (y/n): " yn
     case $yn in
         [Yy]* ) break;;
         [Nn]* ) echo; echo "This script will now exit."; echo; exit;;
@@ -44,13 +43,12 @@ while true; do
 done
 
 
-#define and cleanup reboot log
-#rm /var/log/reboot_logs/reboot_log_$(date +\%m.\%d.\%Y).txt
+#Create reboot log file
 touch /var/log/reboot_logs/reboot_log_$(date +\%m.\%d.\%Y).txt
 log=/var/log/reboot_logs/reboot_log_$(date +\%m.\%d.\%Y).txt
 
 
-#sleep for consumption
+#Sleep for consumption
 sleep 2
 
 
@@ -63,7 +61,7 @@ echo | tee -a "$log"
 echo "##############################" | tee -a "$log"
 
 
-#sleep for consumption
+#Sleep for consumption
 sleep 2
 
 
@@ -94,7 +92,7 @@ sleep 3
 #fi
 
 
-#sleep for consumption
+#Sleep for consumption
 sleep 2
 
 
