@@ -2,11 +2,9 @@
 
 #################################################################
 
-
 #Script Name: stop_kf_server.sh
 
 #Description: This script can be leveraged to stop the KF2 Server
-
 
 #################################################################
 

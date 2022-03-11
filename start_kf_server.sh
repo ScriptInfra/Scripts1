@@ -2,11 +2,9 @@
 
 ########################################################################## 
 
-
 #Script Name: start_kf_server.sh 
 
 #Description: This script can be leveraged to cleanly start the KF2 Server
-
 
 ########################################################################## 
 
