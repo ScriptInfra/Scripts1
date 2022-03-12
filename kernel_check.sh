@@ -12,7 +12,6 @@
 # Define variables
 hostname=$(hostname)
 
-rm /var/log/kernel_check_log_$(date +\%m.\%d.\%Y).txt
 touch /var/log/kernel_check_log_$(date +\%m.\%d.\%Y).txt
 log=/var/log/kernel_check_log_$(date +\%m.\%d.\%Y).txt
 
