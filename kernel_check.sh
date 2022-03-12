@@ -11,6 +11,8 @@
 
 # Define variables
 hostname=$(hostname)
+email=$(cat /git/Scripts/email.txt)
+
 
 touch /var/log/kernel_check_log_$(date +\%m.\%d.\%Y).txt
 log=/var/log/kernel_check_log_$(date +\%m.\%d.\%Y).txt
@@ -22,7 +24,7 @@ current_kernel_version=$(uname -r | cut -c 1-11 | tr -d - | tr -d .)
 if [ "$latest_kernel_version" -gt "$current_kernel_version" ]; then
 		echo "$hostname is not running on the latest kernel version. Please reboot the server to pick up the latest kernel." > "$log"
 		echo "$hostname is not running on the latest kernel version. Please reboot the server to pick up the latest kernel."
-		cat "$log" | mailx -s "$hostname Kernel Check" andrewbatchelor5@gmail.com
+		cat "$log" | mailx -s "$hostname Kernel Check" "$email"
 	else
                 echo ""
                 echo "$hostname is running on the latest kernel version."
