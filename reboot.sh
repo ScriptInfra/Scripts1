@@ -143,4 +143,4 @@ echo | tee -a "$log"
 echo "The system will now reboot" | tee -a "$log"
 
 
-#reboot
+reboot
