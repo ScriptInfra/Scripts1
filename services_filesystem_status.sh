@@ -9,6 +9,9 @@
 ########################################################################################################################################################################
 
 
+email=$(cat /git/Scripts/email.txt)
+
+
 # Create log file variable
 log=pre_reboot_check_log_$(date +\%m.\%d.\%Y_backup).txt
 
@@ -81,7 +84,7 @@ execution=$(date)
 while true; do
 	read -p "Would you like to receive a copy of this report via email? (y/n) " yn
 	case $yn in
-		[Yy]* ) echo "Sending report to andrewbatchelor5@gmail.com..."; cat "$log" | mailx -s "Pre-reboot" andrewbatchelor5@gmail.com; break;;
+		[Yy]* ) echo "Sending report to "$email"..."; cat "$log" | mailx -s "Pre-reboot" "$email"; break;;
 		[Nn]* ) echo "No email will be sent..."; break;;
 		* ) echo "Please answer yes or no.";;
 	esac
