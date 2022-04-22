@@ -1,12 +1,19 @@
 #!/bin/sh
 
-####################################################################################
+#####################################################################################
+#
+# Script Name: kernel_check.sh
+#
+# Description: This script will check if the system is on the latest kernel available
+#
+#####################################################################################
 
-#Script Name: kernel_check.sh
 
-#Description: This script will check if the system is on the latest kernel available
 
-####################################################################################
+# Clear screen
+
+clear
+
 
 
 # Define variables
