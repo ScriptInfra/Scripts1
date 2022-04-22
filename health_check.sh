@@ -36,76 +36,88 @@ clear
 
 # Prompt that health check script is running
 
-echo | tee -a "$log"
-echo "####################################" | tee -a "$log"
-echo | tee -a "$log"
-echo "### Starting system health check ###" | tee -a "$log"
-echo | tee -a "$log"
-echo "####################################" | tee -a "$log"
+echo ""
+echo "####################################"
+echo ""
+echo "### Starting system health check ###"
+echo ""
+echo "####################################"
 
 
-#Prompt user that script is checking Syncthing service status
-echo | tee -a "$log"
-echo "Checking Syncthing service status..." | tee -a "$log"
+# Prompt user that script is checking Syncthing service status
+
+echo ""
+echo "Checking Syncthing service status..."
 
 
 
-#Check if Syncthing service is running
+# Check if Syncthing service is running
+
 syncthing_status=$(systemctl status syncthing@syncthing | grep Active)
 syncthing_status_logic=$(systemctl status syncthing@syncthing | grep running | wc -l)
 
-echo | tee -a "$log"
-echo "Syncthing status:" $syncthing_status | tee -a "$log"
-echo | tee -a "$log"
+echo ""
+echo "Syncthing status:" $syncthing_status
+echo ""
 
-if [ "$syncthing_status_logic" == "1" ]; then
-        echo "SUCCESS: Syncthing is running" | tee -a "$log"
+if [ "$syncthing_status_logic" == "1" ]
+then
+        echo "SUCCESS: Syncthing is running"
         continue
-        echo | tee -a "$log"
+        echo ""
 else
-        echo "WARNING: Syncthing is not in a running state" | tee -a "$log"
-        echo | tee -a "$log"
-        cat "$log" | mailx -s "WARNING: Syncthing is not in a running state" "$email"
-        echo "Sending Syncthing status alert to "$email"..." | tee -a "$log"
-        echo | tee -a "$log"
+        echo "WARNING: Syncthing is not in a running state"
+        echo ""
+        echo "WARNING: Syncthing is not in a running state" | mailx -s "WARNING: Syncthing is not in a running state" "$email"
+        echo "Sending Syncthing status alert to "$email"..."
+        echo ""
 fi
 
 
-#Prompt user that script is checking Folding@Home service status
-echo | tee -a "$log"
-echo "------------------------------------------------------------" | tee -a "$log"
-echo | tee -a "$log"
-echo "Checking Folding@Home service status..." | tee -a "$log"
+
+# Prompt user that script is checking Folding@Home service status
+
+echo ""
+echo "------------------------------------------------------------"
+echo ""
+echo "Checking Folding@Home service status..."
 
 
-#Check if Folding@Home service is running
+
+# Check if Folding@Home service is running
+
 fah_status=$(systemctl status fahclient | grep -i running)
 fah_status_logic=$(systemctl status fahclient | grep -i 'running' | wc -l)
 
-echo | tee -a "$log"
-echo "Folding@Home Status:" $fah_status | tee -a "$log"
-echo | tee -a "$log"
+echo ""
+echo "Folding@Home Status:" $fah_status
+echo ""
 
 if [ "$fah_status_logic" == "1" ]; then
-        echo "SUCCESS: fahclient is running" | tee -a "$log"
+        echo "SUCCESS: fahclient is running"
         continue
-	echo | tee -a "$log"
+	echo ""
 else
-        echo "WARNING: Folding@Home is not in a running state" | tee -a "$log"
-	echo | tee -a "$log"
-	cat "$log" | mailx -s "WARNING: Folding@Home is not in a running state" "$email"
-	echo "Sending Folding@Home status alert to "$email"..." | tee -a "$log"
-	echo | tee -a "$log"
+        echo "WARNING: Folding@Home is not in a running state"
+	echo ""
+	cat "WARNING: Folding@Home is not in a running state" | mailx -s "WARNING: Folding@Home is not in a running state" "$email"
+	echo "Sending Folding@Home status alert to "$email"..."
+	echo ""
 fi
 
-#Start Folding@Home Service if it is not in a running state
+
+
+# Start Folding@Home Service if it is not in a running state
+
 if [ "$fah_status_logic" != "1" ]; then
 	systemctl start fahclient
 	echo "Folding@Home service has been started."
 fi
 
 
-#Start KF2 logic
+
+# Start KF2 logic
+
 #echo | tee -a "$log"
 #echo "------------------------------------------------------------" | tee -a "$log"
 #echo | tee -a "$log"
@@ -142,10 +154,10 @@ fi
 #fi
 
 
-echo | tee -a "$log"
-echo "------------------------------------------------------------" | tee -a "$log"
-echo | tee -a "$log"
-echo "Checking Firewall service status..." | tee -a "$log"
+echo ""
+echo "------------------------------------------------------------"
+echo ""
+echo "Checking Firewall service status..."
 
 
 
@@ -154,32 +166,32 @@ echo "Checking Firewall service status..." | tee -a "$log"
 firewall_status=$(systemctl status firewalld | grep Active)
 firewall_status_logic=$(systemctl status firewalld | grep running | wc -l)
 
-echo | tee -a "$log"
-echo "Firewall status:" $firewall_status | tee -a "$log"
-echo | tee -a "$log"
+echo ""
+echo "Firewall status:" $firewall_status
+echo ""
 
 if [ "$firewall_status_logic" == "1" ]; then
-        echo "SUCCESS: Firewall is running" | tee -a "$log"
+        echo "SUCCESS: Firewall is running"
         continue
-        echo | tee -a "$log"
-	echo | tee -a "$log"
+        echo ""
+	echo ""
 else
-        echo "WARNING: Firewall is not in a running state" | tee -a "$log"
-        echo | tee -a "$log"
-        cat "$log" | mailx -s "WARNING: Firewall is not in a running state" "$email"
-        echo "Sending Firewall status alert to $"email"..." | tee -a "$log"
-        echo | tee -a "$log"
-	echo | tee -a "$log"
+        echo "WARNING: Firewall is not in a running state"
+        echo ""
+        cat "WARNING: Firewall is not in a running state" | mailx -s "WARNING: Firewall is not in a running state" "$email"
+        echo "Sending Firewall status alert to $"email"..."
+        echo ""
+	echo ""
 fi
 
 
 
 # Prompt user that script is checking cpu temp
 
-echo "------------------------------------------------------------" | tee -a "$log"
-echo | tee -a "$log"
-echo "Checking CPU temp..." | tee -a "$log"
-echo | tee -a "$log"
+echo "------------------------------------------------------------"
+echo ""
+echo "Checking CPU temp..."
+echo ""
 
 
 
@@ -188,14 +200,14 @@ echo | tee -a "$log"
 cpu_temp=$(sensors | grep Package | awk '{print $4}' | cut -c 2-3)
 
 if [ $cpu_temp -lt 80 ]; then
-	echo "SUCCESS: CPU temp within operating threshold" | tee -a "$log"
-	echo | tee -a "$log"
-        echo | tee -a "$log"
+	echo "SUCCESS: CPU temp within operating threshold"
+	echo ""
+        echo ""
 else
-	echo "WARNING: CPU Temp over 80 degrees" | tee -a "$log"
-	echo | tee -a "$log"
-        cat "$log" | mailx -s "WARNING: CPU temp is above 85 degrees" "$email"
-        echo "Sending CPU temp alert to "$email"..." | tee -a "$log"
-        echo | tee -a "$log"
-	echo | tee -a "$log"
+	echo "WARNING: CPU Temp over 80 degrees"
+	echo ""
+        cat "WARNING: CPU Temp over 80 degrees" | mailx -s "WARNING: CPU temp is above 85 degrees" "$email"
+        echo "Sending CPU temp alert to "$email"..."
+        echo ""
+	echo ""
 fi
