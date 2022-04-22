@@ -37,15 +37,16 @@ clear
 # Prompt that health check script is running
 
 echo ""
-echo "####################################"
-echo ""
-echo "### Starting system health check ###"
-echo ""
-echo "####################################"
+echo "################################"
+echo "#                              #" 
+echo "# Starting System Health Check #"
+echo "#                              #"
+echo "################################"
 
 
 # Prompt user that script is checking Syncthing service status
 
+echo ""
 echo ""
 echo "Checking Syncthing service status..."
 
