@@ -1,12 +1,19 @@
 #!/bin/sh
 
 ###########################################################################################################
-
-#Script Name: health_check.sh
-
-#Description: This script queries if the following services are running: Syncthing, Folding@Home, Firewall
-
+#
+# Script Name: health_check.sh
+#
+# Description: This script queries if the following services are running: Syncthing, Folding@Home, Firewall
+#
 ###########################################################################################################
+
+
+
+# Clear screen
+
+clear
+
 
 
 email=$(cat /git/Scripts/email.txt)
