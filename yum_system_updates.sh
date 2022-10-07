@@ -9,12 +9,24 @@
 ###########################################################################################
 
 
-#Define variables
-email=$(cat /git/Scripts/email.txt)
-log=/var/log/yum_update_$(date +\%m.\%d.\%Y).txt
 
-#Run system update
+# Clear screen for consumption
+
+clear
+
+
+
+# Define variables
+
+email=$(cat /home/git/scripts/email.txt)
+log=/var/log/yum_logs/yum_update_$(date +\%c).txt
+
+
+
+# Run system update
 yum upgrade -y > $log
 
-#Send system update log to email
-cat "$log" | mailx -s "cloud1 Yum Updates for $(date +\%m.\%d.\%Y)" "$email"
+
+
+# Send system update log to email
+cat "$log" | mailx -s "cloud1 Yum Updates for $(date +\%c)" "$email"
