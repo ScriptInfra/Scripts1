@@ -32,8 +32,8 @@ email=$(cat /home/git/scripts/email.txt)
 
 
 # Define shutdown log variable
-touch /var/log/shutdown_logs/shutdown_log_$(date +\%m.\%d.\%Y).txt
-log=/var/log/shutdown_logs/shutdown_log_$(date +\%m.\%d.\%Y).txt
+#touch /var/log/shutdown_logs/shutdown_log_$(date +\%c).txt
+log=/var/log/shutdown_logs/shutdown_log_$(date +\%c).txt
 
 
 
