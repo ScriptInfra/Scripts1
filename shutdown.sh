@@ -2,11 +2,11 @@
 
 
 ########################################################################################################################################################################
-
-#Script Name: shutdown.sh
-
-#Description: This script will stop the Folding@Home service, and check if there are users on the KF2 server. If there are no users, the server will shutdown
-
+#
+# Script Name: shutdown.sh
+#
+# Description: This script will stop the Folding@Home service, and check if there are users on the KF2 server. If there are no users, the server will shutdown
+#
 ########################################################################################################################################################################
 
 
