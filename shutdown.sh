@@ -133,20 +133,6 @@ sleep 2
 
 
 # Sleep for consumption
-sleep 2
-
-
-
-# Email user log file
-echo | tee -a "$log"
-echo "------------------------------------------------------------" | tee -a "$log"
-echo | tee -a "$log"
-echo "Sending log file to email..." | tee -a "$log"
-echo | tee -a "$log"
-
-
-
-# Sleep for consumption
 sleep 3
 
 
