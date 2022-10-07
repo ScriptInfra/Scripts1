@@ -19,7 +19,7 @@ clear
 # Define variables
 
 hostname=$(hostname)
-email=$(cat /git/Scripts/email.txt)
+email=$(cat /home/git/scripts/email.txt)
 
 
 latest_kernel_version=$(rpm -q --last kernel | perl -pe 's/^kernel-(\S+).*/$1/' | head -n1 | cut -c 1-11 | tr -d - | tr -d .)
