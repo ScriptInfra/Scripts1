@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 ########################################################################################################################################################################
 #
 # Script Name: shutdown.sh
@@ -10,7 +9,8 @@
 ########################################################################################################################################################################
 
 
-#Confirm user is running as root
+
+# Confirm user is running as root
 if [ `whoami` != 'root' ]
         then
           echo "You must be root to run this script. This script will now exit."
@@ -18,12 +18,20 @@ if [ `whoami` != 'root' ]
 fi
 
 
-#define shutdown log variable
+
+# Variables
+
+email=$(cat /home/git/scripts/email.txt)
+
+
+
+# Define shutdown log variable
 touch /var/log/shutdown_logs/shutdown_log_$(date +\%m.\%d.\%Y).txt
 log=/var/log/shutdown_logs/shutdown_log_$(date +\%m.\%d.\%Y).txt
 
 
-#confirm user really wants to shutdown system
+
+# Confirm user really wants to shutdown system
 hostname=$(hostname)
 echo
 while true; do
@@ -36,7 +44,8 @@ while true; do
 done
 
 
-#Confirm user has gracefully stopped the KF2 server
+
+# Confirm user has gracefully stopped the KF2 server
 echo
 while true; do
     read -p "Have you gracefully stopped the KF2 server? (y/n): " yn
@@ -48,7 +57,8 @@ while true; do
 done
 
 
-#Prompt that shutdown script is running
+
+# Prompt that shutdown script is running
 echo | tee -a "$log"
 echo "##############################" | tee -a "$log"
 echo | tee -a "$log"
@@ -57,8 +67,10 @@ echo | tee -a "$log"
 echo "##############################" | tee -a "$log"
 
 
+
 #sleep for consumption
 sleep 2
+
 
 
 #Stop Folding@Home service
@@ -67,6 +79,7 @@ echo | tee -a "$log"
 echo "Attempting to stop Folding@Home client..." | tee -a "$log"
 echo | tee -a "$log"
 /etc/rc.d/init.d/FAHClient stop
+
 
 
 #Confirm Folding@Home service is stopped
@@ -84,16 +97,19 @@ else
 fi
 
 
-#sleep for consumption
+
+# Sleep for consumption
 sleep 2
 
 
-#Start KF2 logic
+
+# Start KF2 logic
 #echo | tee -a "$log"
 #echo "------------------------------------------------------------" | tee -a "$log"
 #echo | tee -a "$log"
 #echo "Checking if there are possible active users on KF2 game server..." | tee -a "$log"
 #echo | tee -a "$log"
+
 
 
 #Check if there are any users on the KF2 server
@@ -110,26 +126,30 @@ sleep 2
 #fi
 
 
-#sleep for consumption
+
+# Sleep for consumption
 sleep 2
 
 
-#Email user log file
+
+# Email user log file
 echo | tee -a "$log"
 echo "------------------------------------------------------------" | tee -a "$log"
 echo | tee -a "$log"
-echo "Sending log file to AndrewBatchelor5@Gmail.com..." | tee -a "$log"
+echo "Sending log file to Email..." | tee -a "$log"
 echo | tee -a "$log"
 
 
-#sleep for consumption
+
+# Sleep for consumption
 sleep 3
 
 
-#Shutdown the system
+
+# Shutdown the system
 echo | tee -a "$log"
 echo "The system will now shutdown" | tee -a "$log"
 
-#cat "$log" | mailx -s "cloud1 Reboot Log" andrewbatchelor5@gmail.com
+#cat "$log" | mailx -s "cloud1 Reboot Log" "$email"
 
 shutdown now
