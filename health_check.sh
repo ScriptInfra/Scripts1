@@ -10,13 +10,17 @@
 
 
 
-# Clear screen
+# Clear screen for consumption
 
 clear
 
 
 
-email=$(cat /git/Scripts/email.txt)
+# Variables
+
+email=$(cat /home/git/scripts/email.txt)
+
+
 
 # Confirm user is running as root
 
@@ -179,7 +183,7 @@ if [ "$firewall_status_logic" == "1" ]; then
 else
         echo "WARNING: Firewall is not in a running state"
         echo ""
-        cat "WARNING: Firewall is not in a running state" | mailx -s "WARNING: Firewall is not in a running state" "$email"
+        echo "WARNING: Firewall is not in a running state" | mailx -s "WARNING: Firewall is not in a running state" "$email"
         echo "Sending Firewall status alert to $"email"..."
         echo ""
 	echo ""
