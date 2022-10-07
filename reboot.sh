@@ -1,12 +1,11 @@
 #!/bin/sh
 
-
 ########################################################################################################################################################################
-
-#Script Name: reboot.sh 
-
-#Description: This script will stop the Folding@Home service, and check if there are users on the KF2 server.
-
+#
+# Script Name: reboot.sh 
+#
+# Description: This script will stop the Folding@Home service, and check if there are users on the KF2 server.
+#
 ########################################################################################################################################################################
 
 
