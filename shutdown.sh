@@ -10,6 +10,12 @@
 
 
 
+# Clear screen for consumption
+
+clear
+
+
+
 # Confirm user is running as root
 if [ `whoami` != 'root' ]
         then
@@ -60,11 +66,11 @@ done
 
 # Prompt that shutdown script is running
 echo | tee -a "$log"
-echo "##############################" | tee -a "$log"
+echo "################################" | tee -a "$log"
 echo | tee -a "$log"
 echo "### Starting system shutdown ###" | tee -a "$log"
 echo | tee -a "$log"
-echo "##############################" | tee -a "$log"
+echo "################################" | tee -a "$log"
 
 
 
@@ -78,17 +84,16 @@ echo | tee -a "$log"
 echo | tee -a "$log"
 echo "Attempting to stop Folding@Home client..." | tee -a "$log"
 echo | tee -a "$log"
-/etc/rc.d/init.d/FAHClient stop
+systemctl stop fahclient
 
 
 
 #Confirm Folding@Home service is stopped
-fah_status=$(/etc/rc.d/init.d/FAHClient status)
+fah_status=$(systemctl status fahclient | grep -i 'running' | wc -l)
 
-echo "Folding@Home Status:" $fah_status | tee -a "$log"
-echo | tee -a "$log"
+#echo "Folding@Home Status:" $fah_status | tee -a "$log"
 
-if [ "$fah_status" == "fahclient is not running" ]; then
+if [ "$fah_status" == "0" ]; then
         echo "SUCCESS: fahclient stopped gracefully" | tee -a "$log"
         continue
 else
@@ -136,7 +141,7 @@ sleep 2
 echo | tee -a "$log"
 echo "------------------------------------------------------------" | tee -a "$log"
 echo | tee -a "$log"
-echo "Sending log file to Email..." | tee -a "$log"
+echo "Sending log file to email..." | tee -a "$log"
 echo | tee -a "$log"
 
 
@@ -152,4 +157,4 @@ echo "The system will now shutdown" | tee -a "$log"
 
 #cat "$log" | mailx -s "cloud1 Reboot Log" "$email"
 
-shutdown now
+#shutdown now
