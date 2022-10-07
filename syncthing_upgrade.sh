@@ -1,12 +1,12 @@
 #!/bin/sh
 
-##############################################################
-
-#Script Name: syncthing_upgrade.sh
-
-#Description: This script will automatically upgrade syncthing
-
-##############################################################
+###############################################################
+#
+# Script Name: syncthing_upgrade.sh
+#
+# Description: This script will automatically upgrade syncthing
+#
+###############################################################
 
 
 # Gracefully stop the syncthing service
