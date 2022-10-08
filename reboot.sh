@@ -20,6 +20,11 @@ if [ `whoami` != 'root' ]
 fi
 
 
+# Clear screen for consumption
+
+clear
+
+
 # Confirm user wants to reboot system
 hostname=$(hostname)
 echo
@@ -76,7 +81,7 @@ systemctl stop fahclient
 
 
 # Add wait to allow FAHClient to stop
-sleep 3
+sleep 2
 
 
 # Confirm Folding@Home service is stopped
@@ -92,10 +97,6 @@ sleep 3
 #	echo "fahclient did not stop gracefully, this script will now exit" | tee -a "$log"
 #	exit
 #fi
-
-
-# Sleep for consumption
-sleep 2
 
 
 # Start KF2 logic
@@ -133,13 +134,10 @@ sleep 2
 #cat "$log" | mailx -s "Cloud1 Reboot Log" "$email"
 
 
-# Sleep for consumption
-sleep 3
-
-
 # Perform reboot
 echo | tee -a "$log"
 echo "$hostname will now reboot" | tee -a "$log"
+echo | tee -a "$log"
 
 
 #reboot
