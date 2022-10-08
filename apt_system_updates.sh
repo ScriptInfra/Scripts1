@@ -1,16 +1,16 @@
 #!/bin/sh
 
-#############################################################################################
-
-#Script Name: apt_upgrade.sh
-
-#Description: This script upgrades apt packages and sends the upgraded package list to email.
-
-#############################################################################################
+##############################################################################################
+#
+# Script Name: apt_upgrade.sh
+#
+# Description: This script upgrades apt packages and sends the upgraded package list to email.
+#
+##############################################################################################
 
 
 #Define system log
-log=/var/log/apt_upgrade_$(date +\%m.\%d.\%Y).txt
+log=/var/log/apt_upgrade_$(date +\%c).txt
 
 #Run system upgrade
 apt upgrade -y > $log
