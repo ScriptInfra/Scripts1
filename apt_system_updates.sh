@@ -9,11 +9,14 @@
 ##############################################################################################
 
 
-#Define system log
+# Variables
 log=/var/log/apt_upgrade_$(date +\%c).txt
+email=$(cat /home/git/scripts/email.txt)
 
-#Run system upgrade
+
+# Run system upgrade
 apt upgrade -y > $log
 
-#Send system upgrade log to email
-cat "$log" | mailx -s "Ubuntu System Update Status for $(date +\%m.\%d.\%Y)" andrewbatchelor5@gmail.com
+
+# Send system upgrade log to email
+cat "$log" | mailx -s "Ubuntu System Update Status for $(date +\%c)" $email
