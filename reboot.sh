@@ -9,10 +9,10 @@
 ########################################################################################################################################################################
 
 
-email=$(cat /git/Scripts/email.txt)
+email=$(cat /home/git/scripts/email.txt)
 
 
-#Confirm user is running as root
+# Confirm user is running as root
 if [ `whoami` != 'root' ]
 	then
 	  echo "You must be root to run this script. This script will now exit."
@@ -20,7 +20,7 @@ if [ `whoami` != 'root' ]
 fi
 
 
-#Confirm user wants to reboot system
+# Confirm user wants to reboot system
 hostname=$(hostname)
 echo
 while true; do
@@ -33,7 +33,7 @@ while true; do
 done
 
 
-#Confirm user has gracefully stopped the KF2 server
+# Confirm user has gracefully stopped the KF2 server
 echo
 while true; do
     read -p "Has the KF2 server been gracefully stopped? (y/n): " yn
@@ -45,16 +45,16 @@ while true; do
 done
 
 
-#Create reboot log file
+# Create reboot log file
 touch /var/log/reboot_logs/reboot_log_$(date +\%m.\%d.\%Y).txt
 log=/var/log/reboot_logs/reboot_log_$(date +\%m.\%d.\%Y).txt
 
 
-#Sleep for consumption
+# Sleep for consumption
 sleep 2
 
 
-#Prompt that reboot script is running
+# Prompt that reboot script is running
 echo | tee -a "$log"
 echo "##############################" | tee -a "$log"
 echo | tee -a "$log"
@@ -63,11 +63,11 @@ echo | tee -a "$log"
 echo "##############################" | tee -a "$log"
 
 
-#Sleep for consumption
+# Sleep for consumption
 sleep 2
 
 
-#Stop Folding@Home service
+# Stop Folding@Home service
 echo | tee -a "$log"
 echo | tee -a "$log"
 echo "Attempting to stop Folding@Home client..." | tee -a "$log"
@@ -75,11 +75,11 @@ echo | tee -a "$log"
 systemctl stop fahclient
 
 
-#Add wait to allow FAHClient to stop
+# Add wait to allow FAHClient to stop
 sleep 3
 
 
-#Confirm Folding@Home service is stopped
+# Confirm Folding@Home service is stopped
 #fah_status=$(systemctl status fahclient)
 #
 #echo "Folding@Home Status:" $fah_status | tee -a "$log"
@@ -94,11 +94,11 @@ sleep 3
 #fi
 
 
-#Sleep for consumption
+# Sleep for consumption
 sleep 2
 
 
-#Start KF2 logic
+# Start KF2 logic
 #echo | tee -a "$log"
 #echo "------------------------------------------------------------" | tee -a "$log"
 #echo | tee -a "$log"
@@ -106,7 +106,7 @@ sleep 2
 #echo | tee -a "$log"
 
 
-#Check if there are any users on the KF2 server
+# Check if there are any users on the KF2 server
 #kf_check=$(tail -3000 /home/steam/Steam/Killing_Floor_2/KFGame/Logs/Launch.log | grep "GetLivingPlayerCount" | wc -l)
 #
 #if [ "$kf_check" -eq 0 ]; then
@@ -120,11 +120,11 @@ sleep 2
 #fi
 
 
-#sleep for consumption
+# Sleep for consumption
 sleep 2
 
 
-#Email user log file
+# Email user log file
 #echo | tee -a "$log"
 #echo "------------------------------------------------------------" | tee -a "$log"
 #echo | tee -a "$log"
@@ -133,13 +133,13 @@ sleep 2
 #cat "$log" | mailx -s "Cloud1 Reboot Log" "$email"
 
 
-#sleep for consumption
+# Sleep for consumption
 sleep 3
 
 
-#Perform reboot
+# Perform reboot
 echo | tee -a "$log"
 echo "The system will now reboot" | tee -a "$log"
 
 
-reboot
+#reboot
