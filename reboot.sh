@@ -46,8 +46,8 @@ done
 
 
 # Create reboot log file
-touch /var/log/reboot_logs/reboot_log_$(date +\%m.\%d.\%Y).txt
-log=/var/log/reboot_logs/reboot_log_$(date +\%m.\%d.\%Y).txt
+#touch /var/log/reboot_logs/reboot_log_$(date +\%m.\%d.\%Y).txt
+log=/var/log/reboot_logs/reboot_log_$(date +\%c).txt
 
 
 # Sleep for consumption
@@ -139,7 +139,7 @@ sleep 3
 
 # Perform reboot
 echo | tee -a "$log"
-echo "The system will now reboot" | tee -a "$log"
+echo "$hostname will now reboot" | tee -a "$log"
 
 
 #reboot
